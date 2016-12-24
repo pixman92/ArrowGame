@@ -9,7 +9,7 @@ var pressedLength = 0;
 var lengthForStuff = 5;
 var right = 0;
 
-function starting () {
+function starting() {
   if(localStorage.getItem('howMany')!==null){
     lengthForStuff=localStorage.getItem('howMany');
     runArrows(lengthForStuff);
