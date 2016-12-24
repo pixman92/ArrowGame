@@ -8,7 +8,8 @@ var pressed = 0;
 var pressedLength = 0;
 var lengthForStuff = 5;
 var right = 0;
-$('document').ready(function(){
+
+function starting () {
   if(localStorage.getItem('howMany')!==null){
     lengthForStuff=localStorage.getItem('howMany');
     runArrows(lengthForStuff);
@@ -43,6 +44,10 @@ $('document').ready(function(){
     localStorage.setItem("howMany", lengthForStuff);
     runArrows(lengthForStuff);
   });
+  
+}
+
+$('document').ready(function(){
   
   
 });
