@@ -1,4 +1,4 @@
-try{
+
   ``// client-side js
 // run by the browser each time your view template is loaded
 
@@ -9,7 +9,8 @@ var pressed = 0;
 var pressedLength = 0;
 var lengthForStuff = 5;
 var right = 0;
-$('document').ready(function(){
+
+function firstRun(){
   if(localStorage.getItem('howMany')!==null){
     lengthForStuff=localStorage.getItem('howMany');
     runArrows(lengthForStuff);
@@ -37,16 +38,17 @@ $('document').ready(function(){
       pressed=0;
     }
   });
-  
-  
-  $('#length').change(function(){
-    lengthForStuff = $("#length").val();
-    localStorage.setItem("howMany", lengthForStuff);
-    runArrows(lengthForStuff);
+    $('#length').change(function(){
+      lengthForStuff = $("#length").val();
+      localStorage.setItem("howMany", lengthForStuff);
+      runArrows(lengthForStuff);
+    });
+}
+
+$('document').ready(function(){
+
   });
-  
-  
-});
+
 
 var stringMe ="";
 var count = 0;
@@ -173,7 +175,4 @@ function image(){
 
 function getRandomArbitrary(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
-}
-}catch(err){
-  console.log(err);
 }
