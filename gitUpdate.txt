@@ -1,0 +1,3 @@
+git add .
+git commit -m "BIG update to client.js. Updated modulus pattern. Length form working. Button after all input? Maybe..."
+git push git@github.com:pixman92/ArrowGame.git findingProblem

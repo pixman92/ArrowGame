@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 
   ``// client-side js
+=======
+// client-side js
+>>>>>>> findingProblem
 // run by the browser each time your view template is loaded
 
 // by default, you've got jQuery,
@@ -10,21 +14,36 @@ var pressedLength = 0;
 var lengthForStuff = 5;
 var right = 0;
 
+<<<<<<< HEAD
 function firstRun(){
   if(localStorage.getItem('howMany')!==null){
     lengthForStuff=localStorage.getItem('howMany');
-    runArrows(lengthForStuff);
-    // console.log(lengthForStuff);
-    $("#length").val(lengthForStuff);
-  }else{
+=======
+
+$('document').ready(function(){
+  starting();
+
+});
+
+
+function starting() {
+  if(localStorage.getItem("howMany")===null){
+    localStorage.setItem("howMany", 5);
     lengthForStuff = 5;
+>>>>>>> findingProblem
     runArrows(lengthForStuff);
-  }
   
-  // runArrows(lengthForStuff);
+  }else{
+    lengthForStuff=localStorage.getItem('howMany');
+    runArrows(lengthForStuff);
+    console.log(lengthForStuff);
+    $("#length").val(lengthForStuff);
+  }
+
+
   $('#up').click(function(){
     Up()
-    });
+  });
   $('#down').click(function(){
     Down();
   });
@@ -38,6 +57,7 @@ function firstRun(){
       pressed=0;
     }
   });
+<<<<<<< HEAD
     $('#length').change(function(){
       lengthForStuff = $("#length").val();
       localStorage.setItem("howMany", lengthForStuff);
@@ -49,31 +69,73 @@ $('document').ready(function(){
 
   });
 
+=======
+
+  
+
+  // runArrows(lengthForStuff);
+  
+
+  $('#length').change(function(){
+    lengthForStuff = $("#length").val();
+    localStorage.setItem("howMany", lengthForStuff);
+    runArrows(lengthForStuff);
+  });
+  
+  
+}
+
+function runinningPart(){
+  runArrows(lengthForStuff);
+}
+
+// $('document').ready(function(){
+  
+  
+// });
+>>>>>>> findingProblem
 
 var stringMe ="";
 var count = 0;
 var holding="";
+var help = "";
 var tmp = "";
+var stringNonBr = "";
 
 function runArrows(lengthForStuff){
   stringMe = "";
-  for(var i=0;i<=lengthForStuff++;i++){
+  var until = lengthForStuff;
+  for(var i=0;i<until;i++){
     var ran = getRandomArbitrary(1,3);
+    if(i%5==0){
+      stringMe += "<br>" ;
+      
+    }
     if(ran==1){
       stringMe += "^";
+      stringNonBr += "^";
       // console.log("yes!")
     } 
     if(ran==2){
       stringMe += "V";
+      stringNonBr += "V";
       // console.log('Yes 2')
     }
-    if(i%5===0){
-      holding ="\n";
-      tmp = stringMe + holding;
-    }
+    // if(i%5==0){
+    //   holding ="<br>";
+    //   tmp = stringMe + holding;
+    // }
+    // if(i%5==0){
+    //  // $('#arrowSubmit').html($('#arrowSubmit').html() + "<br>");
+    //  console.log("I? "+ i);
+    //   console.log("length? "+stringMe.length%5);
+    //    console.log("length!! "+ until);       // var tmp = $("#arrows").html();
+       
+    // }
   }
+  console.log("until " + until);
   console.log("string...'"+stringMe+"'");
-  $('#arrows').html(tmp);
+  $('#arrows').html(stringMe);
 }
 
 function hideOnClick(){
@@ -83,20 +145,20 @@ function hideOnClick(){
 
 function Up(){
   console.log("ran Up");
-  
+  hide();
   var next = count + 1; 
-  console.log(stringMe.substring(count, next));
+  console.log(stringNonBr.substring(count, next));
   if(count%10===0){
     $('#arrowSubmit').html($('#arrowSubmit').html() + "<br>");
   }
-  if(stringMe.substring(count, next)=="^"){
+  if(stringNonBr.substring(count, next)=="^"){
     console.log("yes"); 
     right = right+1;
     $('#arrowSubmit').html($('#arrowSubmit').html()+"^");
   }else{
     $('#arrowSubmit').html($('#arrowSubmit').html()+"X");
   }
-  if(stringMe.substring(count, next)===""){
+  if(stringNonBr.substring(count, next)===""){
     // hideArrowAnswers();
     reset();
   }else{
@@ -118,19 +180,19 @@ function Down(){
   console.log("ran Down");
   hide();
   var next = count + 1; 
-  console.log(stringMe.substring(count, next));
+  console.log(stringNonBr.substring(count, next));
   if(count%10===0){
     console.log("true!");
     $('#arrowSubmit').html($('#arrowSubmit').html() + "<br>");
   }
-  if(stringMe.substring(count, next)=="V"){
+  if(stringNonBr.substring(count, next)=="V"){
     console.log("yes");
     right = right+1;
     $('#arrowSubmit').html($('#arrowSubmit').html()+"V");
   }else{
     $('#arrowSubmit').html($('#arrowSubmit').html()+"X");
   }
-  if(stringMe.substring(count, next)===""){
+  if(stringNonBr.substring(count, next)===""){
     // hideArrowAnswers();
     reset();
   }else{
@@ -154,7 +216,8 @@ function hide(){
 
 function reset(){
   alert("You got "+right+" right out of "+ lengthForStuff);
-  stringMe = "";
+  stringNonBr = "";
+  stringMe ="";
   count = 0;
   right = 0;
   $('#arrows').empty();

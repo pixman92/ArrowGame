@@ -23,6 +23,10 @@
     "gomix",
     "express"
   ],
+<<<<<<< HEAD
+=======
+  "devDependencies": {},
+>>>>>>> findingProblem
   "author": "",
   "license": "ISC"
 }
