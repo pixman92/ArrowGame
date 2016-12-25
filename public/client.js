@@ -9,21 +9,30 @@ var pressedLength = 0;
 var lengthForStuff = 5;
 var right = 0;
 
+
+$('document').ready(function(){
+  starting();
+
+});
+
+
 function starting() {
-  if(localStorage.getItem('howMany')!==null){
-    lengthForStuff=localStorage.getItem('howMany');
-    runArrows(lengthForStuff);
-    // console.log(lengthForStuff);
-    $("#length").val(lengthForStuff);
-  }else{
+  if(localStorage.getItem("howMany")===null){
+    localStorage.setItem("howMany", 5);
     lengthForStuff = 5;
     runArrows(lengthForStuff);
-  }
   
-  // runArrows(lengthForStuff);
+  }else{
+    lengthForStuff=localStorage.getItem('howMany');
+    runArrows(lengthForStuff);
+    console.log(lengthForStuff);
+    $("#length").val(lengthForStuff);
+  }
+
+
   $('#up').click(function(){
     Up()
-    });
+  });
   $('#down').click(function(){
     Down();
   });
@@ -37,30 +46,45 @@ function starting() {
       pressed=0;
     }
   });
+
   
+
+  // runArrows(lengthForStuff);
   
+
   $('#length').change(function(){
     lengthForStuff = $("#length").val();
     localStorage.setItem("howMany", lengthForStuff);
     runArrows(lengthForStuff);
   });
   
+  
 }
 
-$('document').ready(function(){
+function runinningPart(){
+  runArrows(lengthForStuff);
+}
+
+// $('document').ready(function(){
   
   
-});
+// });
 
 var stringMe ="";
 var count = 0;
 var holding="";
+var help = "";
 var tmp = "";
 
 function runArrows(lengthForStuff){
   stringMe = "";
-  for(var i=0;i<=lengthForStuff++;i++){
+  var until = lengthForStuff;
+  for(var i=0;i<until;i++){
     var ran = getRandomArbitrary(1,3);
+    if(i%5==0){
+      stringMe += "<br>" ;
+      
+    }
     if(ran==1){
       stringMe += "^";
       // console.log("yes!")
@@ -69,13 +93,21 @@ function runArrows(lengthForStuff){
       stringMe += "V";
       // console.log('Yes 2')
     }
-    if(i%5===0){
-      holding ="\n";
-      tmp = stringMe + holding;
-    }
+    // if(i%5==0){
+    //   holding ="<br>";
+    //   tmp = stringMe + holding;
+    // }
+    // if(i%5==0){
+    //  // $('#arrowSubmit').html($('#arrowSubmit').html() + "<br>");
+    //  console.log("I? "+ i);
+    //   console.log("length? "+stringMe.length%5);
+    //    console.log("length!! "+ until);       // var tmp = $("#arrows").html();
+       
+    // }
   }
+  console.log("until " + until);
   console.log("string...'"+stringMe+"'");
-  $('#arrows').html(tmp);
+  $('#arrows').html(stringMe);
 }
 
 function hideOnClick(){
@@ -85,7 +117,7 @@ function hideOnClick(){
 
 function Up(){
   console.log("ran Up");
-  
+  hide();
   var next = count + 1; 
   console.log(stringMe.substring(count, next));
   if(count%10===0){
@@ -177,7 +209,4 @@ function image(){
 
 function getRandomArbitrary(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
-}
-}catch(err){
-  console.log(err);
 }
