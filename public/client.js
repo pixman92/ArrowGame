@@ -75,6 +75,7 @@ var count = 0;
 var holding="";
 var help = "";
 var tmp = "";
+var stringNonBr = "";
 
 function runArrows(lengthForStuff){
   stringMe = "";
@@ -87,10 +88,12 @@ function runArrows(lengthForStuff){
     }
     if(ran==1){
       stringMe += "^";
+      stringNonBr += "^";
       // console.log("yes!")
     } 
     if(ran==2){
       stringMe += "V";
+      stringNonBr += "V";
       // console.log('Yes 2')
     }
     // if(i%5==0){
@@ -119,18 +122,18 @@ function Up(){
   console.log("ran Up");
   hide();
   var next = count + 1; 
-  console.log(stringMe.substring(count, next));
+  console.log(stringNonBr.substring(count, next));
   if(count%10===0){
     $('#arrowSubmit').html($('#arrowSubmit').html() + "<br>");
   }
-  if(stringMe.substring(count, next)=="^"){
+  if(stringNonBr.substring(count, next)=="^"){
     console.log("yes"); 
     right = right+1;
     $('#arrowSubmit').html($('#arrowSubmit').html()+"^");
   }else{
     $('#arrowSubmit').html($('#arrowSubmit').html()+"X");
   }
-  if(stringMe.substring(count, next)===""){
+  if(stringNonBr.substring(count, next)===""){
     // hideArrowAnswers();
     reset();
   }else{
@@ -152,19 +155,19 @@ function Down(){
   console.log("ran Down");
   hide();
   var next = count + 1; 
-  console.log(stringMe.substring(count, next));
+  console.log(stringNonBr.substring(count, next));
   if(count%10===0){
     console.log("true!");
     $('#arrowSubmit').html($('#arrowSubmit').html() + "<br>");
   }
-  if(stringMe.substring(count, next)=="V"){
+  if(stringNonBr.substring(count, next)=="V"){
     console.log("yes");
     right = right+1;
     $('#arrowSubmit').html($('#arrowSubmit').html()+"V");
   }else{
     $('#arrowSubmit').html($('#arrowSubmit').html()+"X");
   }
-  if(stringMe.substring(count, next)===""){
+  if(stringNonBr.substring(count, next)===""){
     // hideArrowAnswers();
     reset();
   }else{
@@ -188,7 +191,8 @@ function hide(){
 
 function reset(){
   alert("You got "+right+" right out of "+ lengthForStuff);
-  stringMe = "";
+  stringNonBr = "";
+  stringMe ="";
   count = 0;
   right = 0;
   $('#arrows').empty();
